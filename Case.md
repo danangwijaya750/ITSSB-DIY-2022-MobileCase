@@ -1,5 +1,5 @@
 # My Photos
-My Photos is an android application to store photo in cloud for free and safe. You could find it too on [github](https://github.com/komalasurya/ITSSB-DIY-2022-MobileCase/blob/main/Case.md)
+My Photos is an android application to store photo in cloud for free and safe. You could find it too on [github](https://github.com/danangwijaya750/ITSSB-DIY-2022-MobileCase/blob/main/Case.md)
 
 # Screen
 
