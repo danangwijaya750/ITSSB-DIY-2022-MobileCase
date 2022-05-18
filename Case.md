@@ -44,12 +44,12 @@ You can access this page by click on one of the albums on the homescreen. Show a
 # API
 Use this host for all endpoints
 ```
-http://54.151.137.160/api/v1
+https://api.galeri.infiniteuny.id/api/
 ```
 
 ## Auth
 ### Login
-- Path: `/auth`
+- Path: `/auth/login`
 - Method: `POST`
 - Request Body:
   1. email
@@ -59,38 +59,29 @@ http://54.151.137.160/api/v1
   2. `Content-Type` = `application/json`
 - Response:
   1. signature
-  2. expires_in - signature valid time countdown
  
   Sample:
   - Request:
   ```curl
-  curl -X POST \
-    http://54.151.137.160/api/v1/auth \
-    -H 'Accept: application/json' \
-    -H 'Content-Type: application/json' \
-    -H 'cache-control: no-cache' \
-    -d '{
-        "email":"komala.surya.w@gmail.com",
-        "password":"secret"
-    }'
+  curl -L -X POST 'https://api.galeri.infiniteuny.id/api/auth/login' \
+      -H 'Accept: application/json' \
+      -H 'Content-Type: application/json' \
+      --data-raw '{
+          "email": "wahyudi@mail.com",
+          "password": "12345678"
+      }'
   ```
   - Response:
   ```json
     {
-        "data": {
-            "expires_in": 3600,
-            "signature": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkNjY1M2NhMS05OGJlLTQwNjItODViZC01ZTRmNmVjMWRkMTkiLCJ1c2VybmFtZSI6ImtvbWFsYXN1cnlhMiIsImV4cCI6MTYwMjk5NzkwMX0.qsZNZ0Z5GWqVHzlKmTrrIrk8a7Ik2bBzMwDqzSZShKU9OBsI5B5gENn4_Xinh0Hq9NqZckSJYtd0M3cHfjtcLQ"
-        },
-        "meta": {
-            "version": "1",
-            "hostname": "Komalas-MacBook-Pro.local",
-            "client_ip": "127.0.0.1"
-        }
+    "data": {
+        "signature": "4|sac5wBkrixSKh2OcSArd5ftSxIEQGtEwWSXPWR2q"
     }
+}
   ```
   
 ### Register
-- Path: `/users`
+- Path: `/auth/register`
 - Method: `POST`
 - Request Body:
   1. username
@@ -102,46 +93,36 @@ http://54.151.137.160/api/v1
   2. `Content-Type` = `application/json`    
  
   Sample:
-  - Request:
   ```curl
-  curl -X POST \
-    http://54.151.137.160/api/v1/users \
-    -H 'Accept: application/json' \
-    -H 'Content-Type: application/json' \
-    -H 'cache-control: no-cache' \
-    -d '{
-        "email": "komala.surya.w@hotmail.com",
-        "password": "Secret1!@",
-        "password_confirmation": "Secret1!@",
-        "name": "surya"
-    }'
+  curl -L -X POST 'https://api.galeri.infiniteuny.id/api/auth/register' \
+      -H 'Accept: application/json' \
+      --data-raw '{
+          "name": "Wahyudi",
+          "email": "wahyudi@mail.com",
+          "password": "12345678",
+          "password_confirmation": "12345678"
+      }'
   ```
   - Response:
   ```json
     {
-        "data": {
-            "username": "komalasurya",
-            "email": "komalasurya@gmail.com",
-            "password": "$2y$10$kRxB0N.xsW3OS/aRfV0DVuFVFdOpvBuBaKWZPJpcSnHxwLv1XCLXi",
-            "id": "011b1ceb-30dd-4777-87c9-b41b204988f4",
-            "updated_at": "2020-10-18 06:17:10",
-            "created_at": "2020-10-18 06:17:10"
-        },
-        "meta": {
-            "version": "1",
-            "hostname": "Komalas-MacBook-Pro.local",
-            "client_ip": "127.0.0.1"
-        }
+    "data": {
+        "name": "Wahyudi",
+        "email": "wahyudi@mail.com",
+        "updated_at": "2022-05-18T11:29:37.000000Z",
+        "created_at": "2022-05-18T11:29:37.000000Z",
+        "id": 1
     }
+}
   ```
 
 ### Get Users
-- Path: `/users/me`
+- Path: `/user`
 - Method: `GET`
 - Heades:
   1. `Accept` = `application/json`
   2. `Content-Type` = `application/json`   
-  3. `Authorization` = `bearer {access_token}` 
+  3. `Authorization` = `bearer {signature}` 
 - Response (array):
   1. id
   2. name
@@ -150,39 +131,29 @@ http://54.151.137.160/api/v1
   Sample:
   - Request:
   ```curl
-  curl -X POST \
-    http://54.151.137.160/api/v1/users/me \
+  curl -L -X GET 'https://api.galeri.infiniteuny.id/api/user' \
     -H 'Accept: application/json' \
-    -H 'Content-Type: application/json' \
-    -H 'cache-control: no-cache' \
-    -H `Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlM2UzYzMwOS1iNGMyLTQ5ZWEtOGZhZi04NGJlZTc1MTU0MmIiLCJleHAiOjE2MzUxMjY2NDl9.xvDBRIYnVWFAAux9ACLY7e4BNQ-wy8B5C_f1oWCVC-rchv84ww_b9ssDr_tIroD_LTGNxp9xbGd7fKYk-SfVpQ`
+    -H 'Authorization: Bearer 4|sac5wBkrixSKh2OcSArd5ftSxIEQGtEwWSXPWR2q'
   ```
   - Response:
   ```json
     {
-        "data": {
-            "id": "e3e3c309-b4c2-49ea-8faf-84bee751542b",
-            "name": "danang wijaya",
-            "email": "danangwijaya750@gmail.com",
-            "remember_token": null,
-            "created_at": "2022-05-18T15:38:29.000000Z",
-            "updated_at": "2022-05-18T15:38:29.000000Z"
-        },
-        "meta": {
-            "version": "1",
-            "hostname": "localhost",
-            "client_ip": "127.0.0.1"
-        }
+    "id": 1,
+    "name": "Wahyudi",
+    "email": "wahyudi@mail.com",
+    "email_verified_at": null,
+    "created_at": "2022-05-18T11:29:37.000000Z",
+    "updated_at": "2022-05-18T11:29:37.000000Z"
     }
   ```
 
 ## Album
 ### AlbumList
-- Path: `/users/{user_id}/albums`
+- Path: `/user/album`
 - Method: `GET`
 - Headers:
   1. `Accept` = `application/json`
-  2. `Authorization` = `bearer {access_token}` 
+  2. `Authorization` = `bearer {signature}` 
 - Response (array):
   1. id
   2. name
@@ -190,65 +161,34 @@ http://54.151.137.160/api/v1
   Sample:
   - Request:
   ```curl
-  curl -X POST \
-    http://54.151.137.160/api/v1/users/e3e3c309-b4c2-49ea-8faf-84bee751542b/albums \
+  curl -L -X GET 'https://api.galeri.infiniteuny.id/api/user/album' \
     -H 'Accept: application/json' \
-    -H 'Content-Type: application/json' \
-    -H 'cache-control: no-cache' \
-    -H `Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlM2UzYzMwOS1iNGMyLTQ5ZWEtOGZhZi04NGJlZTc1MTU0MmIiLCJleHAiOjE2MzUxMjY2NDl9.xvDBRIYnVWFAAux9ACLY7e4BNQ-wy8B5C_f1oWCVC-rchv84ww_b9ssDr_tIroD_LTGNxp9xbGd7fKYk-SfVpQ`
+    -H 'Authorization: Bearer 4|sac5wBkrixSKh2OcSArd5ftSxIEQGtEwWSXPWR2q'
   ```
   - Response:
   ```json
-    {
-        "data": [{
-            "id": "f7a167eb-4f48-490b-ad6e-5ce99f8d7f6f",
-            "user_id": "e3e3c309-b4c2-49ea-8faf-84bee751542b",
-            "name": "hello world",
-            "created_at": "2021-10-22T15:39:02.000000Z",
-            "updated_at": "2021-10-22T15:39:02.000000Z"
-        }],
-        "meta": {
-            "pagination": {
-                "current_page": 1,
-                "from": 1,
-                "last_page": 1,
-                "links": [
-                    {
-                        "url": null,
-                        "label": "&laquo; Previous",
-                        "active": false
-                    },
-                    {
-                        "url": "http://54.151.137.160/api/v1/users/e3e3c309-b4c2-49ea-8faf-84bee751542b/albums?page=1",
-                        "label": "1",
-                        "active": true
-                    },
-                    {
-                        "url": null,
-                        "label": "Next &raquo;",
-                        "active": false
-                    }
-                ],
-                "path": "http://54.151.137.160/api/v1/users/e3e3c309-b4c2-49ea-8faf-84bee751542b/albums",
-                "per_page": 50,
-                "to": 1,
-                "total": 1
-            },
-            "version": "1",
-            "hostname": "localhost",
-            "client_ip": "127.0.0.1"
-        }
-    }
+  {
+      "data": [
+          {
+              "id": 1,
+              "user_id": "1",
+              "name": "Sekolah Dasar",
+              "created_at": "2022-05-18T11:59:10.000000Z",
+              "updated_at": "2022-05-18T11:59:10.000000Z"
+          }
+      ]
+  }
   ```
 
 ### CreateAlbum
-- Path: `/albums`
+- Path: `/album`
 - Method: `POST`
 - Request Body:
   1. name
 - Heades:
   1. `Accept` = `application/json`
-  2. `Content-Type` = `application/json`    
+  2. `Content-Type` = `application/json`  
+  3. `Authorization` = `bearer {signature}`   
 - Response:
   1. id
   2. name
@@ -257,45 +197,31 @@ http://54.151.137.160/api/v1
   Sample:
   - Request:
   ```curl
-  curl -X POST \
-    http://54.151.137.160/api/v1/albums \
+  curl -L -X POST 'https://api.galeri.infiniteuny.id/api/album' \
     -H 'Accept: application/json' \
+    -H 'Authorization: Bearer 4|sac5wBkrixSKh2OcSArd5ftSxIEQGtEwWSXPWR2q' \
     -H 'Content-Type: application/json' \
-    -H 'cache-control: no-cache' \
-    -d '{
-        "name":"hello"
+    --data-raw '{
+        "name": "Sekolah Dasar"
     }'
   ```
   - Response:
   ```json
     {
-        "data": {
-            "user": {
-                "id": "e3e3c309-b4c2-49ea-8faf-84bee751542b",
-                "name": "danang wijaya",
-                "email": "danangwijaya750@gmail.com",
-                "remember_token": null,
-                "created_at": "2022-05-18T15:38:29.000000Z",
-                "updated_at": "2022-05-18T15:38:29.000000Z"
-            },
-            "name": "hello world",
-            "user_id": "e3e3c309-b4c2-49ea-8faf-84bee751542b",
-            "id": "618a2d11-74b8-4752-b427-bfad51900bdc",
-            "updated_at": "2022-05-18T16:45:52.000000Z",
-            "created_at": "2022-05-18T16:45:52.000000Z"
-        },
-        "meta": {
-            "version": "1",
-            "hostname": "localhost",
-            "client_ip": "127.0.0.1"
-        }
+      "data": {
+          "name": "Sekolah Dasar",
+          "user_id": 1,
+          "updated_at": "2022-05-18T11:59:10.000000Z",
+          "created_at": "2022-05-18T11:59:10.000000Z",
+          "id": 1
+      }
     }
   ```
  
 ## Photo
 
 ### PhotoList
-- Path: `/users/{user_id}/photos`
+- Path: `/user/photo`
 - Method: `GET`
 - Params:
   1. album (opt) - album id
@@ -313,65 +239,25 @@ http://54.151.137.160/api/v1
   Sample:
   - Request:
   ```curl
-  curl -X POST \
-    http://54.151.137.160/api/v1/users/e3e3c309-b4c2-49ea-8faf-84bee751542b/albums \
-    -H 'Accept: application/json' \
-    -H 'Content-Type: application/json' \
-    -H 'cache-control: no-cache' \
-    -H `Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlM2UzYzMwOS1iNGMyLTQ5ZWEtOGZhZi04NGJlZTc1MTU0MmIiLCJleHAiOjE2MzUxMjY2NDl9.xvDBRIYnVWFAAux9ACLY7e4BNQ-wy8B5C_f1oWCVC-rchv84ww_b9ssDr_tIroD_LTGNxp9xbGd7fKYk-SfVpQ`
+  curl -L -X GET 'https://api.galeri.infiniteuny.id/api/user/photo' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer 4|sac5wBkrixSKh2OcSArd5ftSxIEQGtEwWSXPWR2q'
   ```
   - Response:
   ```json
-    {
-        "data": [{
-            "album": {
-                "id": "f7a167eb-4f48-490b-ad6e-5ce99f8d7f6f",
-                "user_id": "e3e3c309-b4c2-49ea-8faf-84bee751542b",
-                "name": "hello world",
-                "created_at": "2021-10-22T15:39:02.000000Z",
-                "updated_at": "2021-10-22T15:39:02.000000Z"
-            },
-            "id": "51c4f54f-ff81-45c6-b105-74160d2de2ac",
-            "user_id": "e3e3c309-b4c2-49ea-8faf-84bee751542b",
-            "album_id": "f7a167eb-4f48-490b-ad6e-5ce99f8d7f6f",
-            "name": "bbb-splash.png",
-            "size": 1527631,
-            "created_at": "2021-10-22T15:51:16.000000Z",
-            "updated_at": "2021-10-22T15:51:16.000000Z",
-            "image": "http://54.151.137.160/api/v1/photos/51c4f54f-ff81-45c6-b105-74160d2de2ac/image"
-        }],
-        "meta": {
-            "pagination": {
-                "current_page": 1,
-                "from": 1,
-                "last_page": 1,
-                "links": [
-                    {
-                        "url": null,
-                        "label": "&laquo; Previous",
-                        "active": false
-                    },
-                    {
-                        "url": "http://54.151.137.160/api/v1/users/e3e3c309-b4c2-49ea-8faf-84bee751542b/photos?page=1",
-                        "label": "1",
-                        "active": true
-                    },
-                    {
-                        "url": null,
-                        "label": "Next &raquo;",
-                        "active": false
-                    }
-                ],
-                "path": "http://54.151.137.160/api/v1/users/e3e3c309-b4c2-49ea-8faf-84bee751542b/photos",
-                "per_page": 50,
-                "to": 1,
-                "total": 1
-            },
-            "version": "1",
-            "hostname": "localhost",
-            "client_ip": "127.0.0.1"
+   {
+    "data": [
+        {
+            "id": 1,
+            "user_id": "1",
+            "album_id": "1",
+            "name": "Jawaban.png",
+            "size": "175090",
+            "created_at": "2022-05-18T12:03:22.000000Z",
+            "updated_at": "2022-05-18T12:03:22.000000Z"
         }
-    }
+    ]
+  }
   ```
 
 ### UploadPhoto
@@ -382,55 +268,31 @@ http://54.151.137.160/api/v1
   2. image - file
 - Heades:
   1. `Accept` = `application/json`
-  2. `Content-Type` = `application/json`    
+  2. `Content-Type` = `multipart/form-data`    
  
   Sample:
   - Request:
   ```curl
-  curl -X POST \
-    http://54.151.137.160/api/v1/photos \
+  curl -L -X POST 'https://api.galeri.infiniteuny.id/api/photo' \
     -H 'Accept: application/json' \
-    -H 'Content-Type: application/json' \
-    -H 'cache-control: no-cache' \
-    -H `Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlM2UzYzMwOS1iNGMyLTQ5ZWEtOGZhZi04NGJlZTc1MTU0MmIiLCJleHAiOjE2MzUxMjY2NDl9.xvDBRIYnVWFAAux9ACLY7e4BNQ-wy8B5C_f1oWCVC-rchv84ww_b9ssDr_tIroD_LTGNxp9xbGd7fKYk-SfVpQ` \
-    --form 'album="f7a167eb-4f48-490b-ad6e-5ce99f8d7f6f"' \
-    --form 'image=@"/Users/komalasurya/Downloads/bbb-splash.png"'
+    -H 'Authorization: Bearer 4|sac5wBkrixSKh2OcSArd5ftSxIEQGtEwWSXPWR2q' \
+    -F 'album_id="1"' \
+    -F 'photo=@"/home/nartos/Pictures/gotoubun-bg-1.jpg"'
   ```
   - Response:
   ```json
     {
-        "data": {
-            "user": {
-                "id": "e3e3c309-b4c2-49ea-8faf-84bee751542b",
-                "name": "danang wijaya",
-                "email": "danangwijaya750@gmail.com",
-                "remember_token": null,
-                "created_at": "2022-05-18T15:38:29.000000Z",
-                "updated_at": "2022-05-18T15:38:29.000000Z"
-            },
-            "album": {
-                "id": "f7a167eb-4f48-490b-ad6e-5ce99f8d7f6f",
-                "user_id": "e3e3c309-b4c2-49ea-8faf-84bee751542b",
-                "name": "hello world",
-                "created_at": "2022-05-18T15:39:02.000000Z",
-                "updated_at": "2022-05-18T15:39:02.000000Z"
-            },
-            "size": 67376,
-            "name": "google.jpg",
-            "id": "9d70fb82-43e0-49d8-8d6d-6ef29ea99f31",
-            "user_id": "e3e3c309-b4c2-49ea-8faf-84bee751542b",
-            "album_id": "f7a167eb-4f48-490b-ad6e-5ce99f8d7f6f",
-            "updated_at": "2022-05-18T16:35:47.000000Z",
-            "created_at": "2022-05-18T16:35:47.000000Z",
-            "image": "http://54.151.137.160/api/v1/photos/9d70fb82-43e0-49d8-8d6d-6ef29ea99f31/image"
-        },
-        "meta": {
-            "version": "1",
-            "hostname": "localhost",
-            "client_ip": "127.0.0.1"
-        }
+    "data": {
+        "album_id": "1",
+        "user_id": 1,
+        "name": "gotoubun-bg-1.jpg",
+        "size": 89386,
+        "updated_at": "2022-05-18T12:49:51.000000Z",
+        "created_at": "2022-05-18T12:49:51.000000Z",
+        "id": 2
     }
+  }
   ```
 
 ## Postman Link
-[Postman collection](https://www.getpostman.com/collections/ebfc341a9cfeb75412db)
+[Postman collection](https://www.getpostman.com/collections/5d8ff4ddaa544f189394)
