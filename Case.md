@@ -162,15 +162,15 @@ http://54.151.137.160/api/v1
     {
         "data": {
             "id": "e3e3c309-b4c2-49ea-8faf-84bee751542b",
-            "name": "komala surya",
-            "email": "komala.surya.w@gmail.com",
+            "name": "danang wijaya",
+            "email": "danangwijaya750@gmail.com",
             "remember_token": null,
-            "created_at": "2021-10-22T15:38:29.000000Z",
-            "updated_at": "2021-10-22T15:38:29.000000Z"
+            "created_at": "2022-05-18T15:38:29.000000Z",
+            "updated_at": "2022-05-18T15:38:29.000000Z"
         },
         "meta": {
             "version": "1",
-            "hostname": "komala-surya",
+            "hostname": "localhost",
             "client_ip": "127.0.0.1"
         }
     }
@@ -235,7 +235,7 @@ http://54.151.137.160/api/v1
                 "total": 1
             },
             "version": "1",
-            "hostname": "komala-surya",
+            "hostname": "localhost",
             "client_ip": "127.0.0.1"
         }
     }
@@ -272,21 +272,21 @@ http://54.151.137.160/api/v1
         "data": {
             "user": {
                 "id": "e3e3c309-b4c2-49ea-8faf-84bee751542b",
-                "name": "komala surya",
-                "email": "komala.surya.w@gmail.com",
+                "name": "danang wijaya",
+                "email": "danangwijaya750@gmail.com",
                 "remember_token": null,
-                "created_at": "2021-10-22T15:38:29.000000Z",
-                "updated_at": "2021-10-22T15:38:29.000000Z"
+                "created_at": "2022-05-18T15:38:29.000000Z",
+                "updated_at": "2022-05-18T15:38:29.000000Z"
             },
             "name": "hello world",
             "user_id": "e3e3c309-b4c2-49ea-8faf-84bee751542b",
             "id": "618a2d11-74b8-4752-b427-bfad51900bdc",
-            "updated_at": "2021-10-25T16:45:52.000000Z",
-            "created_at": "2021-10-25T16:45:52.000000Z"
+            "updated_at": "2022-05-18T16:45:52.000000Z",
+            "created_at": "2022-05-18T16:45:52.000000Z"
         },
         "meta": {
             "version": "1",
-            "hostname": "Komalas-MacBook-Pro.local",
+            "hostname": "localhost",
             "client_ip": "127.0.0.1"
         }
     }
@@ -368,7 +368,7 @@ http://54.151.137.160/api/v1
                 "total": 1
             },
             "version": "1",
-            "hostname": "komala-surya",
+            "hostname": "localhost",
             "client_ip": "127.0.0.1"
         }
     }
@@ -402,31 +402,31 @@ http://54.151.137.160/api/v1
         "data": {
             "user": {
                 "id": "e3e3c309-b4c2-49ea-8faf-84bee751542b",
-                "name": "komala surya",
-                "email": "komala.surya.w@gmail.com",
+                "name": "danang wijaya",
+                "email": "danangwijaya750@gmail.com",
                 "remember_token": null,
-                "created_at": "2021-10-22T15:38:29.000000Z",
-                "updated_at": "2021-10-22T15:38:29.000000Z"
+                "created_at": "2022-05-18T15:38:29.000000Z",
+                "updated_at": "2022-05-18T15:38:29.000000Z"
             },
             "album": {
                 "id": "f7a167eb-4f48-490b-ad6e-5ce99f8d7f6f",
                 "user_id": "e3e3c309-b4c2-49ea-8faf-84bee751542b",
                 "name": "hello world",
-                "created_at": "2021-10-22T15:39:02.000000Z",
-                "updated_at": "2021-10-22T15:39:02.000000Z"
+                "created_at": "2022-05-18T15:39:02.000000Z",
+                "updated_at": "2022-05-18T15:39:02.000000Z"
             },
             "size": 67376,
             "name": "google.jpg",
             "id": "9d70fb82-43e0-49d8-8d6d-6ef29ea99f31",
             "user_id": "e3e3c309-b4c2-49ea-8faf-84bee751542b",
             "album_id": "f7a167eb-4f48-490b-ad6e-5ce99f8d7f6f",
-            "updated_at": "2021-10-25T16:35:47.000000Z",
-            "created_at": "2021-10-25T16:35:47.000000Z",
+            "updated_at": "2022-05-18T16:35:47.000000Z",
+            "created_at": "2022-05-18T16:35:47.000000Z",
             "image": "http://54.151.137.160/api/v1/photos/9d70fb82-43e0-49d8-8d6d-6ef29ea99f31/image"
         },
         "meta": {
             "version": "1",
-            "hostname": "Komalas-MacBook-Pro.local",
+            "hostname": "localhost",
             "client_ip": "127.0.0.1"
         }
     }
