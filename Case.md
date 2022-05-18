@@ -227,7 +227,7 @@ https://api.galeri.infiniteuny.id/api/
   1. album (opt) - album id
 - Headers:
   1. `Accept` = `application/json`
-  2. `Authorization` = `bearer {access_token}` 
+  2. `Authorization` = `bearer {signature}` 
 - Response (array):
   1. id
   2. album
@@ -245,23 +245,54 @@ https://api.galeri.infiniteuny.id/api/
   ```
   - Response:
   ```json
-   {
-    "data": [
-        {
-            "id": 1,
-            "user_id": "1",
-            "album_id": "1",
-            "name": "Jawaban.png",
-            "size": "175090",
-            "created_at": "2022-05-18T12:03:22.000000Z",
-            "updated_at": "2022-05-18T12:03:22.000000Z"
-        }
-    ]
+  {
+      "data": [
+          {
+              "id": 1,
+              "user_id": "1",
+              "album_id": "1",
+              "name": "Jawaban.png",
+              "size": "175090",
+              "created_at": "2022-05-18T12:03:22.000000Z",
+              "updated_at": "2022-05-18T12:03:22.000000Z",
+              "url": "https://api.galeri.infiniteuny.id/api/photo/1"
+          },
+          {
+              "id": 2,
+              "user_id": "1",
+              "album_id": "1",
+              "name": "gotoubun-bg-1.jpg",
+              "size": "89386",
+              "created_at": "2022-05-18T12:49:51.000000Z",
+              "updated_at": "2022-05-18T12:49:51.000000Z",
+              "url": "https://api.galeri.infiniteuny.id/api/photo/2"
+          },
+          {
+              "id": 3,
+              "user_id": "1",
+              "album_id": "1",
+              "name": "gotoubun-bg-1.jpg",
+              "size": "89386",
+              "created_at": "2022-05-18T12:52:27.000000Z",
+              "updated_at": "2022-05-18T12:52:27.000000Z",
+              "url": "https://api.galeri.infiniteuny.id/api/photo/3"
+          },
+          {
+              "id": 4,
+              "user_id": "1",
+              "album_id": "1",
+              "name": "gotoubun-bg-1.jpg",
+              "size": "89386",
+              "created_at": "2022-05-18T12:52:35.000000Z",
+              "updated_at": "2022-05-18T12:52:35.000000Z",
+              "url": "https://api.galeri.infiniteuny.id/api/photo/4"
+          }
+      ]
   }
   ```
 
 ### UploadPhoto
-- Path: `/photos`
+- Path: `/photo`
 - Method: `POST`
 - Request Body:
   1. album - album id
