@@ -112,7 +112,7 @@ https://api.galeri.infiniteuny.id/api/
         "created_at": "2022-05-18T11:29:37.000000Z",
         "id": 1
     }
-}
+  }
   ```
 
 ### Get Users
