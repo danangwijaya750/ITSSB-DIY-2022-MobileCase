@@ -238,7 +238,7 @@ https://api.galeri.infiniteuny.id/api/
   Sample:
   - Request:
   ```curl
-  curl -L -X GET 'https://api.galeri.infiniteuny.id/api/user/photo' \
+  curl -L -X GET 'https://api.galeri.infiniteuny.id/api/user/photo?album_id=1' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer 4|sac5wBkrixSKh2OcSArd5ftSxIEQGtEwWSXPWR2q'
   ```
