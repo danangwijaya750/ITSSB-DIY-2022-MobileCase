@@ -77,9 +77,8 @@ https://api.galeri.infiniteuny.id/api/
     "data": {
         "signature": "4|sac5wBkrixSKh2OcSArd5ftSxIEQGtEwWSXPWR2q"
     }
-}
+  }
   ```
-  
 ### Register
 - Path: `/auth/register`
 - Method: `POST`
@@ -223,8 +222,8 @@ https://api.galeri.infiniteuny.id/api/
 ### PhotoList
 - Path: `/user/photo`
 - Method: `GET`
-- Params:
-  1. album (opt) - album id
+- Query:
+  1. album_id (opt) - album id
 - Headers:
   1. `Accept` = `application/json`
   2. `Authorization` = `bearer {signature}` 
